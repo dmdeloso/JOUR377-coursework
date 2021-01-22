@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <title>Assignment 1</title>
+    <style>
+        #chart1{
+            width: 70%;
+            margin: auto;
+        }
+        svg{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="chart1"></div>
+    <script>
+        let w = 500;
+        let h = 300;
+        let dataset;
+        let lineParse = (d) => {
+            
+        }
+        d3.select("#chart1").append('svg')
+            .attr("viewBox", '0 0 ' + w + " " + h)
+            .attr("preserveAspectRatio", "xMidYMid meet");
+        
+    </script>
+</body>
+</html>
