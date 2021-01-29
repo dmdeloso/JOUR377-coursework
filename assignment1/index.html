@@ -5,29 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <title>Assignment 1</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        body{
+            /* background-color:  #081640; */
+        }
+        h1{
+            width: 70%;
+            margin: auto auto 1em auto;
+            text-align: left;
+            font-family: 'Open Sans', sans-serif;
+        }
+        h2{
+            font-weight: 400;
+            width: 70%;
+            margin: auto;
+            text-align: left;
+            font-family: 'Open Sans', sans-serif;
+        }
         #chart1{
+            background-color: white;
             width: 70%;
             margin: auto;
         }
         svg{
             border: 1px solid black;
         }
+        .label, .bar-label{
+            font-family: 'Open Sans', sans-serif;
+        }
+        .top-heading, .side-title, .legend-text, .bottom-title{
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+        }
+        .desc-text{
+            font-size: .4rem;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .alt-graph-link{
+            font-size: .8rem;
+            width: 70%;
+            margin: auto;
+            font-family: 'Open Sans', sans-serif;
+            text-align: right;
+        }
+        .alt-graph-link a{
+            color: black;
+        }
+        .article-writeup{
+            width: 50%;
+            margin: auto;
+            font-size: 1.1rem;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .article-writeup h3{
+            margin-bottom: 0;
+        }
+        @media screen and (max-width: 1000px) {
+            #chart1{
+                width: 90%;
+            }
+            
+        }
     </style>
 </head>
 <body>
+    <h2 class="">David Deloso</h2>
+    <h1>JOUR 377 Assignment 1: Visualization Design</h1>
+    
     <div id="chart1"></div>
-    <script>
-        let w = 500;
-        let h = 300;
-        let dataset;
-        let lineParse = (d) => {
-            
-        }
-        d3.select("#chart1").append('svg')
-            .attr("viewBox", '0 0 ' + w + " " + h)
-            .attr("preserveAspectRatio", "xMidYMid meet");
-        
+    <p class="alt-graph-link">If the graph does not display properly, <a href="pnggraph.png" target="_blank">click here for a png version.</a></p>
+    <script src="main.js">
     </script>
+    <section class="article-writeup">
+        <h3>Write-up</h3>
+        <p>For my visualization, I chose to use D3.js, since it is an industry standard library that I want to learn this quarter. Before I began writing any code, I brought the dataset into Tableau to experiment with different types of visualizations and layouts. I decided to use a grouped bar chart to emphasize the large MIC difference between penicilin and other antibiotics for certain gram-negative bacteria.</p>
+        <p>While I was constructing the graph, I initially chose to include all bacteria and map the nominal "Gram staining" variable to color. However, that made it difficult to distinguish between the three antibiotics. Since I realized that the story I wanted to tell lied solely within the gram-negative bacteria, I decided to omit the gram-positive bacteria entirely and map the antibiotic names (nominal) to color. This encoding made it easy to consistently identify each antibiotic and quickly compare their values between bars. The specific colors I chose were arbitrary, but I tried to make them easily-distinguishable. MIC (quantitative) was mapped to y position, or the height of each bar. I chose to use this encoding since MIC was the most important variable to my story, and position allowed me to clearly illustrate the large difference between certain values. I then mapped the bacteria (nominal) to x position. This allowed me to group MIC for the same bacteria together and easily compare those values in addition to comparing the general trends in MIC across the whole chart.</p>
+        <p>The chart is rendered using a linear scale with a domain from 0 to the highest value in the dataset (870) and a range of 0 to the predefined height of the chart. I decided to use value labels on each bar instead of an axis for the entire chart because at that scale, some of the shorter bars are difficult to see. Using labels allowed me to clearly show each value, which made it easier to compare data such as the MIC values for Brucella abortus, which are difficult to compare visually. I also included some text next to the largest bar to provide context and explain how penicilin's high MIC values demonstrate its ineffectiveness against gram-negative bacteria. I included a title on the y axis to show the reader the value being measured, and a seperate title on the x axis to clarify that all of the bacteria represented were gram-negative.</p>
+        <p>The final visualization uses JavaScript code to import and parse the CSV (which I cleaned to ensure consistent formatting among cells), generate a scale for the chart's x and y dimensions and calculate each bar's height and position according to that scale. The full JavaScript file with comments throughout can be viewed here.</p>
+    </section>
 </body>
 </html>
